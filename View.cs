@@ -16,6 +16,7 @@ namespace MediaLibrary
         {
             "1) Add Movie" , 
             "2) Display All Movies", 
+            "3) Find movie",
             "Enter to quit"
         };
 
@@ -27,10 +28,17 @@ namespace MediaLibrary
             "Enter running time (h:m:s)"
         };
 
+        private static string searchPrompt = "Please Enter The Name Of The Movie You Would Like To Find:";
+
 
         public static void setMenuDisplay(ArrayList md)
         {
             menuDisplay = md;
+        }
+
+        public static void displaySearchPrompt()
+        {
+            System.Console.WriteLine(searchPrompt);
         }
 
         public static void displayMenu()
@@ -47,6 +55,16 @@ namespace MediaLibrary
             foreach(Movie m in movies)
             {
                 System.Console.WriteLine(m.Display());           
+            }
+        }
+
+        public static void displaySelectedMovieTitles(string movieTitle, IEnumerable<string> titles)
+        {
+            // LINQ - Count aggregation method
+            Console.WriteLine($"There are {titles.Count()} movies with \"{movieTitle.ToUpper()}\" in the title:");
+            foreach(string t in titles)
+            {
+                Console.WriteLine($"  {t}");
             }
         }
 

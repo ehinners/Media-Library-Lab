@@ -13,7 +13,7 @@ namespace MediaLibrary
         // what is listed here is input from the user, the program will end
         private static ArrayList options = new ArrayList()
         {
-            "1","2"
+            "1","2","3"
         };
 
         private static string genreEscape = "DONE";
@@ -58,6 +58,19 @@ namespace MediaLibrary
             {
                 View.displayMovies();
             }
+            if(input == "3")
+            {
+                findMovie();
+            }
+        }
+
+        private static void findMovie()
+        {
+            View.displaySearchPrompt();
+            string movieTitle = System.Console.ReadLine();
+
+            IEnumerable<string> titles = Model.getMovies().Where(m => m.title.Contains(movieTitle)).Select(m => m.title);
+            View.displaySelectedMovieTitles(movieTitle, titles);
         }
 
         //creates a csv string through user prompt
